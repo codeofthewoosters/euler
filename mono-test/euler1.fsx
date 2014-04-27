@@ -688,5 +688,29 @@ let rec getRoutes (mx,my) (x,y) cont =
 getRoutes (4,4) (0,0) id
 
 // we can use pascals triangle here ... we want the max (middle) value of the 20th row....
+#nowarn "40"
+let rec pascal = seq { 
+    yield [1L];
+    for aLine in pascal -> 
+            let newLine = 
+                aLine |> Seq.pairwise |> Seq.map (fun (x,y) -> (x+y)) |> Seq.toList
+            (1L::newLine) @ [1L] 
+    }
+            
+pascal |> Seq.nth 40 |> Seq.max
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     
  
